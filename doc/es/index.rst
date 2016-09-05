@@ -1,0 +1,2 @@
+Stock Move Description Module
+#############################

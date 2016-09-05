@@ -1,0 +1,20 @@
+nantic_stock_move_description
+=============================
+
+The stock_move_description module of the Tryton application platform.
+
+Installing
+----------
+
+See INSTALL
+
+
+License
+-------
+
+See LICENSE
+
+Copyright
+---------
+
+See COPYRIGHT

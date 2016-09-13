@@ -17,27 +17,23 @@ class Move:
     def on_change_product(self):
         Product = Pool().get('product.product')
 
-        res = super(Move, self).on_change_product()
+        super(Move, self).on_change_product()
 
-        if not self.product:
-            return res
+        if self.product:
+            party_context = {}
+            if self.shipment:
+                shipment = self.shipment
+                if shipment.__name__ in ['stock.shipment.in']:
+                    if shipment.supplier.lang:
+                        party_context['language'] = shipment.supplier.lang.code
+                if shipment.__name__ in ['stock.shipment.out',
+                        'stock.shipment.out.return']:
+                    if shipment.customer.lang:
+                        party_context['language'] = shipment.customer.lang.code
 
-        party_context = {}
-        if self.shipment:
-            shipment = self.shipment
-            if shipment.__name__ in ['stock.shipment.in']:
-                if shipment.supplier.lang:
-                    party_context['language'] = shipment.supplier.lang.code
-            if shipment.__name__ in ['stock.shipment.out',
-                    'stock.shipment.out.return']:
-                if shipment.customer.lang:
-                    party_context['language'] = shipment.customer.lang.code
-
-        if not self.description:
-            with Transaction().set_context(party_context):
-                res['description'] = Product(self.product.id).rec_name
-
-        return res
+            if not self.description:
+                with Transaction().set_context(party_context):
+                    self.description = Product(self.product.id).rec_name
 
 
 class ShipmentOut:

@@ -19,6 +19,9 @@ class Move:
 
         res = super(Move, self).on_change_product()
 
+        if not self.product:
+            return res
+
         party_context = {}
         if self.shipment:
             shipment = self.shipment

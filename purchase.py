@@ -10,9 +10,9 @@ class PurchaseLine:
     __metaclass__ = PoolMeta
     __name__ = 'purchase.line'
 
-    def get_move(self):
+    def get_move(self, move_type):
         # copy description from sale to shipment
-        move = super(PurchaseLine, self).get_move()
+        move = super(PurchaseLine, self).get_move(move_type)
 
         if move:
             move.description = self.description

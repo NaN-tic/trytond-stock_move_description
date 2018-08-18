@@ -8,8 +8,7 @@ from trytond.transaction import Transaction
 __all__ = ['Move', 'ShipmentOut', 'ShipmentIn']
 
 
-class Move:
-    __metaclass__ = PoolMeta
+class Move(metaclass=PoolMeta):
     __name__ = 'stock.move'
     description = fields.Text('Description')
 
@@ -36,8 +35,7 @@ class Move:
                     self.description = Product(self.product.id).rec_name
 
 
-class ShipmentOut:
-    __metaclass__ = PoolMeta
+class ShipmentOut(metaclass=PoolMeta):
     __name__ = 'stock.shipment.out'
 
     def _get_inventory_move(self, move):
@@ -47,8 +45,7 @@ class ShipmentOut:
         return new_move
 
 
-class ShipmentIn:
-    __metaclass__ = PoolMeta
+class ShipmentIn(metaclass=PoolMeta):
     __name__ = 'stock.shipment.in'
 
     @classmethod

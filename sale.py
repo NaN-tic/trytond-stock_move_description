@@ -6,8 +6,7 @@ from trytond.pool import PoolMeta
 __all__ = ['SaleLine']
 
 
-class SaleLine:
-    __metaclass__ = PoolMeta
+class SaleLine(metaclass=PoolMeta):
     __name__ = 'sale.line'
 
     def get_move(self, shipment_type):

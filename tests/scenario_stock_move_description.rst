@@ -101,21 +101,21 @@ Create a Sale::
     >>> sale.lines.append(sale_line)
     >>> sale_line.product = product
     >>> sale_line.quantity = 2.0
-    >>> sale_line.description = u'Product Description'
+    >>> sale_line.description = 'Product Description'
     >>> sale.save()
     >>> Sale.quote([sale.id], config.context)
     >>> Sale.confirm([sale.id], config.context)
     >>> Sale.process([sale.id], config.context)
     >>> sale.state
-    u'processing'
+    'processing'
     >>> sale.reload()
     >>> shipment, = sale.shipments
     >>> outgoing_move, = shipment.outgoing_moves
     >>> outgoing_move.description
-    u'Product Description'
+    'Product Description'
     >>> inventory_move, = shipment.inventory_moves
     >>> inventory_move.description
-    u'Product Description'
+    'Product Description'
 
 Create a Return Sale::
 
@@ -129,18 +129,18 @@ Create a Return Sale::
     >>> sale.lines.append(sale_line)
     >>> sale_line.product = product
     >>> sale_line.quantity = -1.0
-    >>> sale_line.description = u'Product Description'
+    >>> sale_line.description = 'Product Description'
     >>> sale.save()
     >>> Sale.quote([sale.id], config.context)
     >>> Sale.confirm([sale.id], config.context)
     >>> Sale.process([sale.id], config.context)
     >>> sale.state
-    u'processing'
+    'processing'
     >>> sale.reload()
     >>> shipment, = sale.shipment_returns
     >>> incoming_move, = shipment.incoming_moves
     >>> incoming_move.description
-    u'Product Description'
+    'Product Description'
 
 Create a Purchase::
 
@@ -154,14 +154,14 @@ Create a Purchase::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product
     >>> purchase_line.quantity = 2.0
-    >>> purchase_line.description = u'Product Description'
+    >>> purchase_line.description = 'Product Description'
     >>> purchase.save()
     >>> Purchase.quote([purchase.id], config.context)
     >>> Purchase.confirm([purchase.id], config.context)
     >>> Purchase.process([purchase.id], config.context)
     >>> purchase.state
-    u'processing'
+    'processing'
     >>> purchase.reload()
     >>> move, = purchase.moves
     >>> move.description
-    u'Product Description'
+    'Product Description'

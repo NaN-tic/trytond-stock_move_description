@@ -48,12 +48,10 @@ class ShipmentOut(metaclass=PoolMeta):
 class ShipmentIn(metaclass=PoolMeta):
     __name__ = 'stock.shipment.in'
 
-    @classmethod
-    def _get_inventory_moves(cls, incoming_move):
+    def _get_inventory_move(self, incoming_move):
         # copy description from incoming to inventory
-        move = super(ShipmentIn, cls)._get_inventory_moves(incoming_move)
+        move = super(ShipmentIn, self)._get_inventory_move(incoming_move)
         move.description = incoming_move.description
         return move
 
 
-# TODO ShipmentOutReturn._get_inventory_moves() is @staticmethod

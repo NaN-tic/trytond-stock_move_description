@@ -41,7 +41,8 @@ class ShipmentOut(metaclass=PoolMeta):
     def _get_inventory_move(self, move):
         # copy description from outgoing to inventory
         new_move = super(ShipmentOut, self)._get_inventory_move(move)
-        new_move.description = move.description
+        if new_move:
+            new_move.description = move.description
         return new_move
 
 
@@ -51,7 +52,8 @@ class ShipmentIn(metaclass=PoolMeta):
     def _get_inventory_move(self, incoming_move):
         # copy description from incoming to inventory
         move = super(ShipmentIn, self)._get_inventory_move(incoming_move)
-        move.description = incoming_move.description
+        if move:
+            move.description = incoming_move.description
         return move
 
 

@@ -155,6 +155,7 @@ Create a Purchase::
     >>> purchase_line.product = product
     >>> purchase_line.quantity = 2.0
     >>> purchase_line.description = 'Product Description'
+    >>> purchase_line.unit_price = product.cost_price
     >>> purchase.save()
     >>> Purchase.quote([purchase.id], config.context)
     >>> Purchase.confirm([purchase.id], config.context)

@@ -11,7 +11,7 @@ class SaleLine(metaclass=PoolMeta):
 
     def get_move(self, shipment_type):
         # copy description from sale to shipment
-        move = super(SaleLine, self).get_move(shipment_type)
+        move = super().get_move(shipment_type)
 
         if move:
             move.description = self.description

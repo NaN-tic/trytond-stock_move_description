@@ -11,7 +11,7 @@ class PurchaseLine(metaclass=PoolMeta):
 
     def get_move(self, move_type):
         # copy description from sale to shipment
-        move = super(PurchaseLine, self).get_move(move_type)
+        move = super().get_move(move_type)
 
         if move:
             move.description = self.description
